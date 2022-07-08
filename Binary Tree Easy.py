@@ -262,6 +262,90 @@ if __name__ =="__main__":
 ________________________________________________________________________________________________________________
 
 
+Method 2- Iterative
+
+# Python3 program to convert a Binary
+# Tree to its mirror
+ 
+# A binary tree node has data, pointer to
+# left child and a pointer to right child
+# Helper function that allocates a new node
+# with the given data and None left and
+# right pointers
+class newNode:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+ 
+''' Change a tree so that the roles of the left
+    and right pointers are swapped at every node.
+    So the tree...
+        4
+        / \
+        2 5
+        / \
+    1 3
+     
+    is changed to...
+        4
+        / \
+        5 2
+            / \
+        3 1
+    '''
+     
+def mirror( root):
+ 
+    if (root == None):
+        return
+ 
+    q = []
+    q.append(root)
+ 
+    # Do BFS. While doing BFS, keep swapping
+    # left and right children
+    while (len(q)):
+ 
+        # pop top node from queue
+        curr = q[0]
+        q.pop(0)
+ 
+        # swap left child with right child
+        curr.left, curr.right = curr.right, curr.left
+ 
+        # append left and right children
+        if (curr.left):
+            q.append(curr.left)
+        if (curr.right):
+            q.append(curr.right)
+ 
+""" Helper function to print Inorder traversal."""
+def inOrder( node):
+    if (node == None):
+        return
+    inOrder(node.left)
+    print(node.data, end = " ")
+    inOrder(node.right)
+ 
+# Driver code
+root = newNode(1)
+root.left = newNode(2)
+root.right = newNode(3)
+root.left.left = newNode(4)
+root.left.right = newNode(5)
+ 
+""" Print inorder traversal of the input tree """
+print("Inorder traversal of the constructed tree is")
+inOrder(root)
+ 
+""" Convert tree to its mirror """
+mirror(root)
+ 
+""" Print inorder traversal of the mirror tree """
+print("\nInorder traversal of the mirror tree is")
+inOrder(root)
+
 ########################################################################################################################################################
 4)Symmetric Tree
 ########################################################################################################################################################
