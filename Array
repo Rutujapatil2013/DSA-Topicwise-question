@@ -128,3 +128,75 @@ Output
 Time Complexity: O(n)
  Auxiliary Space: O(1)
  #####################################################################################
+3) Find subarray with given sum
+
+def subArraySum(arr, n, sum_):
+    for i in range(n):
+        curr_sum = arr[i]
+        j = i + 1
+        while j <= n:
+          
+            if curr_sum == sum_:
+                print ("Sum found between ",end="")
+                print("indexes % d and % d"%( i, j-1))
+                  
+                return 1
+                  
+            if curr_sum > sum_ or j == n:
+                break
+              
+            curr_sum = curr_sum + arr[j]
+            j += 1
+  
+    print ("No subarray found")
+    return 0
+  
+# Driver program 
+arr = [15, 2, 4, 8, 9, 5, 10, 23]
+n = len(arr)
+sum_ = 23
+subArraySum(arr, n, sum_)
+
+Output
+Sum found between indexes 1 and 4
+ 
+Time Complexity: O(n^2) in worst case. 
+Nested loop is used to traverse the array so the time complexity is O(n^2)
+Space Complexity: O(1). 
+________________________________________________________________________________________
+
+def subArraySum(arr, n, sum_):
+    curr_sum = arr[0]
+    start = 0
+    i = 1
+    while i <= n:
+        while curr_sum > sum_ and start < i-1:
+            curr_sum = curr_sum - arr[start]
+            start += 1
+        if curr_sum == sum_:
+            print ("Sum found between indexes")
+            print ("% d and % d"%(start, i-1))
+            return 1
+        if i < n:
+            curr_sum = curr_sum + arr[i]
+        i += 1
+    print ("No subarray found")
+    return 0
+  
+# Driver program
+arr = [15, 2, 4, 8, 9, 5, 10, 23]
+n = len(arr)
+sum_ = 23
+subArraySum(arr, n, sum_)
+ 
+Output
+Sum found between indexes 1 and 4
+Time Complexity: O(n). 
+    The Array is traversed only once to insert elements into the window. It will take O(N) time
+    The Array is traversed again once to remove elements from the window. It will also take O(N) time.
+    So the total time will be O(N) + O(N) = O(2*N), which is similar to O(N)
+Space Complexity: O(1). 
+    As constant extra space is required.
+
+################################################################################################################
+4)
