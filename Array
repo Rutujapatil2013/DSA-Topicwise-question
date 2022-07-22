@@ -1,1 +1,130 @@
+1) Equilibrium point
 
+# Python program to find equilibrium 
+# index of an array 
+# function to find the equilibrium index
+def equilibrium(arr):
+    leftsum = 0
+    rightsum = 0
+    n = len(arr)
+  
+    # Check for indexes one by one 
+    # until an equilibrium index is found
+    for i in range(n):
+        leftsum = 0
+        rightsum = 0
+      
+        # get left sum
+        for j in range(i):
+            leftsum += arr[j]
+          
+        # get right sum
+        for j in range(i + 1, n):
+            rightsum += arr[j]
+          
+        # if leftsum and rightsum are same,
+        # then we are done
+        if leftsum == rightsum:
+            return i
+      
+    # return -1 if no equilibrium index is found
+    return -1
+              
+# driver code
+arr = [-7, 1, 5, 2, -4, 3, 0]
+print (equilibrium(arr))
+
+Output
+3
+Time Complexity: O(n^2)
+Auxiliary Space: O(1)
+_______________________________________________________________________
+
+def equilibrium(arr):
+    # finding the sum of whole array
+    total_sum = sum(arr)
+    leftsum = 0
+    for i, num in enumerate(arr):
+          
+        # total_sum is now right sum
+        # for index i
+        total_sum -= num
+          
+        if leftsum == total_sum:
+            return i
+        leftsum += num
+       
+      # If no equilibrium index found, 
+      # then return -1
+    return -1
+      
+# Driver code
+arr = [-7, 1, 5, 2, -4, 3, 0]
+print ('First equilibrium index is ',
+       equilibrium(arr))
+ 
+Output
+First equilibrium index is 3
+ Time Complexity: O(n)
+Auxiliary Space: O(1)
+
+########################################################################
+2) Leaders in an array
+
+arr=[16, 17, 4, 3, 5, 2]
+n=len(arr)
+
+for i in range(n):
+    count=0
+    for j in range(i+1,n):
+        if arr[i]>arr[j]:
+            count+=1        
+    if count==n-i-1:
+        print(arr[i],end=' ')
+        
+Output: 
+17 5 2 
+Time Complexity: O(n*n)
+Auxiliary Space: O(1)
+
+_______________________________________________________________________________
+
+# Python Function to print leaders in array 
+def printLeaders(arr,size): 
+      
+    for i in range(0, size): 
+        for j in range(i+1, size): 
+            if arr[i]<=arr[j]: 
+                break
+        if j == size-1: # If loop didn't break 
+            print (arr[i],end=' ') 
+# Driver function 
+arr=[16, 17, 4, 3, 5, 2] 
+printLeaders(arr, len(arr)) 
+ 
+Output
+17 5 2 
+Time Complexity: O(n*n)
+Auxiliary Space: O(1)
+_______________________________________________________________________________
+
+
+# Python function to print leaders in array
+def printLeaders(arr, size):
+     
+    max_from_right = arr[size-1]   
+    print (max_from_right,end=' ')    
+    for i in range( size-2, -1, -1):        
+        if max_from_right < arr[i]:        
+            print (arr[i],end=' ')
+            max_from_right = arr[i]
+          
+# Driver function
+arr = [16, 17, 4, 3, 5, 2]
+printLeaders(arr, len(arr))
+
+Output
+2 5 17 
+Time Complexity: O(n)
+ Auxiliary Space: O(1)
+ #####################################################################################
